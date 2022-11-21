@@ -16,8 +16,8 @@ class Config(object):
     # REQUIRED
     # Login to https://my.telegram.org and fill in these slots with the details given by it
 
-    API_ID = 123456  # integer value, dont use ""
-    API_HASH = "awoo"
+    API_ID = 18610372  # integer value, dont use ""
+    API_HASH = "cab40056243d6b73ce62bf009af14fe5"
     TOKEN = "5599808658"  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
     OWNER_ID = 5298587903  # If you dont know, run the bot and do /id in your private chat with it, also an integer
     OWNER_USERNAME = "OP7AKASH"
@@ -26,7 +26,7 @@ class Config(object):
         -1628946703
     )  # Prints any new group the bot is added to, prints just the name and ID.
     LOG_CHANNEL = (
-        -1001150905176
+        -1628946703
     )  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
 
     # RECOMMENDED
@@ -74,7 +74,7 @@ class Config(object):
     ARQ_API = "awoo"
     APOD_API_KEY = "awoo"
     REDIS_URL = "awoo"
-    ANIME_NAME = "Shikimori's Not Just a Cutie"
+    ANIME_NAME = "One piece"
     START_MEDIA = "https://telegra.ph/file/9235d57807362b4e227a3.mp4"
     BOT_USERNAME = "micchon_shikimori_bot"
     UPDATE_CHANNEL = "Shikimori_bot_Updates"
