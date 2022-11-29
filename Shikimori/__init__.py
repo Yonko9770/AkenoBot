@@ -49,7 +49,7 @@ from Python_ARQ import ARQ
 from telethon.sessions import MemorySession
 import Keep_alive
 
-keep_alive.keep_alive()
+Keep_alive.keep_alive()
 
 StartTime = time.time()
 USE_JOIN_LOGGER = True
