@@ -1,1 +1,1 @@
-worker: python3 -m Shikimori
+worker: python3 -m Shikimori 
