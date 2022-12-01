@@ -30,7 +30,7 @@ from telethon.errors import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
-from shikimori import tbot
+from Shikimori import telethn
 
 spam_chats = []
 
