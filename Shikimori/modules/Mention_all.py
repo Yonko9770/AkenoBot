@@ -35,7 +35,7 @@ from Shikimori import telethn
 spam_chats = []
 
 
-@tbot.on(
+@tomori.on(
     events.NewMessage(
         pattern="^/tagall|/call|/tall|/all|/mentionall|#all|@all|@mentionall|@tagall|@utag(.*)",
     )
@@ -86,7 +86,7 @@ async def all(event):
         if usrnum == 10:
             if mode == "text_on_cmd":
                 txt = f"{usrtxt}\n\n{msg}\n\nMeet Me Here🙈 @Besties_XD ✨🥀"
-                await tbot.send_message(chat_id, txt)
+                await tomori.send_message(chat_id, txt)
             elif mode == "text_on_reply":
                 await msg.reply(usrtxt)
             await asyncio.sleep(2)
@@ -98,7 +98,7 @@ async def all(event):
         pass
 
 
-@tbot.on(events.NewMessage(pattern="^/cancel$"))
+@tomori.on(events.NewMessage(pattern="^/cancel$"))
 async def cancel_spam(event):
     if event.chat_id not in spam_chats:
         return await event.respond("There Is No Proccess On Going")
