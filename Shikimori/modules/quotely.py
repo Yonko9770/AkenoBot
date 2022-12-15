@@ -8,7 +8,7 @@ import time
 from datetime import datetime as dt
 from random import choice
 from shutil import rmtree
-from Shikimori import quotly
+#from Shikimori import quotly
 from Shikimori.services.quotehelper import eor
 from Shikimori.events import register  
 
