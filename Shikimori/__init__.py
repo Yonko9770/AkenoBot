@@ -48,6 +48,7 @@ from telethon import TelegramClient
 from Python_ARQ import ARQ
 from telethon.sessions import MemorySession
 import Keep_alive
+from Shikimori.services.quoteapi import Quotly
 
 Keep_alive.keep_alive()
 
@@ -326,3 +327,4 @@ tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
 
 
+quotly = Quotly()
