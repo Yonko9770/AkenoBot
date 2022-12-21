@@ -1,93 +1,76 @@
 """
-STATUS: Code is working. ✅
+MIT License
+Copyright (c) 2022 Arsh
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 """
 
-"""
-BSD 2-Clause License
+import asyncio
 
-Copyright (C) 2022, SOME-1HING [https://github.com/SOME-1HING]
-
-Credits:-
-    I don't know who originally wrote this code. If you originally wrote this code, please reach out to me. 
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
 
 from Shikimori import telethn
-from Shikimori.events import register as tomori
 
+@telethn.on(events.NewMessage(pattern="^/mentionall ?(.*)"))
+async def mentionall(event):
+  if event.is_private:
+    return await event.respond("__This command can be use in groups and channels!__")
 
-@tomori(pattern="^/(all|mentionall|tagall|utag) ?(.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    mentions = "Tagged by an admin"
-    chat = await event.get_input_chat()
-    async for x in telethn.iter_participants(chat, 100):
-        mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
-    await event.reply(mentions)
-    await event.delete()
+  admins = []
+  async for admin in telethn.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
+    admins.append(admin.id)
+  if event.sender_id not in admins:
+    return await event.respond("Only admins can mention all!")
 
-@tomori(pattern="^@(all|mentionall|tagall|utag) ?(.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    mentions = "Tagged by an admin"
-    chat = await event.get_input_chat()
-    async for x in telethn.iter_participants(chat, 100):
-        mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
-    await event.reply(mentions)
-    await event.delete()
+  if event.pattern_match.group(1):
+    mode = "text_on_cmd"
+    msg = event.pattern_match.group(1)
+  elif event.reply_to_msg_id:
+    mode = "text_on_reply"
+    msg = event.reply_to_msg_id
+    if msg is None:
+        return await event.respond("__I can't mention members for older messages! (messages which sended before i added to group)__")
+  elif event.pattern_match.group(1) and event.reply_to_msg_id:
+    return await event.respond("__Give me one argument!__")
+  else:
+    return await event.respond("__Reply to a message or give me some text to mention others!__")
 
+  if mode == "text_on_cmd":
+    usrnum = 0
+    usrtxt = ""
+    async for usr in telethn.iter_participants(event.chat_id):
+      usrnum += 1
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
+      if usrnum == 5:
+        await telethn.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
+        await asyncio.sleep(2)
+        usrnum = 0
+        usrtxt = ""
 
-# @tomori(pattern="^/users ?(.*)")
-# async def _(event):
-#     if event.fwd_from:
-#         return
-#     mentions = "Users : "
-#     chat = await event.get_input_chat()
-#     async for x in telethn.iter_participants(chat, filter=ChannelParticipantsAdmins):
-#         mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
-#     reply_message = None
-#     if event.reply_to_msg_id:
-#         reply_message = await event.get_reply_message()
-#         await reply_message.reply(mentions)
-#     else:
-#         await event.reply(mentions)
-#     await event.delete()
-
-
-__mod_name__ = "TagAll"
-__help__ = """
-*Tag All*
- ❍ `/users` : Get txt file of all users in your group.
- ❍ `/all` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `/tagall` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `/utag` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `/mentionall` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `@all` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `@tagall` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `@utag` : (reply to message or add another message) To mention all members in your group, without exception.
- ❍ `@mentionall` : (reply to message or add another message) To mention all members in your group, without exception.
-"""
+  elif mode == "text_on_reply":
+    usrnum = 0
+    usrtxt = ""
+    async for usr in telethn.iter_participants(event.chat_id):
+      usrnum += 1
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
+      if usrnum == 5:
+        await telethn.send_message(event.chat_id, usrtxt, reply_to=msg)
+        await asyncio.sleep(2)
+        usrnum = 0
+        usrtxt = ""
+        
+__mod_name__ = "Mention All"
