@@ -102,15 +102,15 @@ async def gbans(_, message):
                   except Exception as e:
                       await msg.edit(str(e))
 
-@pbot.on_message(filters.group):
+@bot.on_message(filters.group):
 async def gbanning(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
-    bot_id = (await pbot.get_me()).id
+    bot_id = (await bot.get_me()).id
     if user_id in get_gbanned_users():
        check = await message.chat.get_member(bot_id)
        if check.privileges:
-             await pbot.ban_chat_member(chat_id, user_id)
+             await bot.ban_chat_member(chat_id, user_id)
              await message.reply_text("done!")
 
 
