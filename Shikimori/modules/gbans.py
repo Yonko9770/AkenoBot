@@ -6,8 +6,8 @@ from Shikimori import pbot as bot
 #from Shikimori.config import LOG_CHANNEL as GROUP_ID
 
 
-from Shikimori import mongodb
-collection = mongodb.GBAN
+from Shikimori.modules import mongo
+collection = mongo.GBAN
 GROUP_ID = int("-1001890443090")
 
 
