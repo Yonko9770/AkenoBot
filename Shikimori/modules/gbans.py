@@ -3,7 +3,7 @@ import config
 from pyrogram import filters
 from pyrogram.types import *
 from Shikimori import pbot as bot
-from Shikimori.config import *
+from Shikimori.config import LOG_CHANNEL as GROUP_ID
 
 
 from Shikimori import mongodb
@@ -111,7 +111,7 @@ async def gbanning(_, message):
        check = await message.chat.get_member(bot_id)
        if check.privileges:
              await bot.ban_chat_member(chat_id, user_id)
-             await message.reply_text("done!")
+             await message.reply_text("Done!")
 
 
 
