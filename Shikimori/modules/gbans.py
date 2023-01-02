@@ -3,7 +3,7 @@ import config
 from pyrogram import filters
 from pyrogram.types import *
 from Shikimori import pbot as bot
-from Shikimori.vars import *
+from Shikimori.config import *
 
 
 from Shikimori import mongodb
