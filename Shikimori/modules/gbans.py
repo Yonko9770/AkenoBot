@@ -2,11 +2,11 @@ import config
 
 from pyrogram import filters
 from pyrogram.types import *
-from NandhaBot import bot
-from NandhaBot.rank import RANK_USERS
+from Shikimori import pbot as bot
+from Shikimori.vars import *
 
 
-from NandhaBot import mongodb
+from Shikimori import mongodb
 collection = mongodb.GBAN
 
 
@@ -49,7 +49,7 @@ by rank users`
 async def ungban_btn(_, query):
       user_id = int(query.data.split(":")[1])
       chat_id = query.data.split(":")[2]
-      if query.from_user.id in (await RANK_USERS()):
+      if query.from_user.id in (await DEV_USERS()):
          try:
            await ungban_user(user_id)
            await bot.unban_chat_member(chat_id, user_id)
@@ -58,7 +58,7 @@ async def ungban_btn(_, query):
          except Exception as e:
              await query.message.edit(str(e))
       else:
-          await query.answer("only rank user can acces!", show_alret=True)
+          await query.answer("only dev user can acces!", show_alret=True)
  
 
 @bot.on_message(filters.command("gban"))
@@ -68,12 +68,12 @@ async def gbans(_, message):
        chat_id = message.chat.id
        chat_title = message.chat.title
        msg = await message.reply_text("gbanning a user...")
-       if not user_id in (await RANK_USERS()):
+       if not user_id in (await DEV_USERS()):
           await msg.edit("`rank user required.`")
        elif reply:
            user_id = message.reply_to_message.from_user.id
-           if user_id in (await RANK_USERS()):
-               await msg.edit("`This person is my rank user`.")
+           if user_id in (await DEV_USERS()):
+               await msg.edit("`This person is my dev user`.")
            elif user_id in (await get_gbaned_users()):
                 await msg.edit("This user already 𝗚𝗕𝗔𝗡𝗡𝗘𝗗.")
            else:
@@ -90,7 +90,7 @@ async def gbans(_, message):
               except:
                   await msg.edit("use userID only.")
               user = await bot.get_users(user_id)
-              if user.id in (await RANK_USERS()):
+              if user.id in (await DEV_USERS()):
                     await msg.edit("This person is my rankuser.")
               elif user.id in (await get_gbaned_users()):
                     await msg.edit("This user already 𝗚𝗕𝗔𝗡𝗡𝗘𝗗.")
@@ -102,15 +102,15 @@ async def gbans(_, message):
                   except Exception as e:
                       await msg.edit(str(e))
 
-@Nandha.on_message(filters.group):
+@pbot.on_message(filters.group):
 async def gbanning(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
-    bot_id = (await Nandha.get_me()).id
+    bot_id = (await pbot.get_me()).id
     if user_id in get_gbanned_users():
        check = await message.chat.get_member(bot_id)
        if check.privileges:
-             await Nandha.ban_chat_member(chat_id, user_id)
+             await pbot.ban_chat_member(chat_id, user_id)
              await message.reply_text("done!")
 
 
