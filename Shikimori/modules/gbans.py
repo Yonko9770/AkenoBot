@@ -69,7 +69,7 @@ async def gbans(_, message):
        chat_title = message.chat.title
        msg = await message.reply_text("gbanning a user...")
        if not user_id in (await DEV_USERS()):
-          await msg.edit("`rank user required.`")
+          await msg.edit("`Dev user required.`")
        elif reply:
            user_id = message.reply_to_message.from_user.id
            if user_id in (await DEV_USERS()):
@@ -79,8 +79,13 @@ async def gbans(_, message):
            else:
               try:
                  await gban_user(user_id)
-                 await msg.edit("Successfully 𝗚𝗕𝗔𝗡𝗡𝗘𝗗!")
-                 await bot.send_message(config.GROUP_ID, text="`the rank user gbanned {}`".format(reply.from_user.mention))
+                 await msg.delete()
+                 await msg.sleep(0.3)
+                 await msg.reply("⚡")
+                 await msg.sleep(1)
+                 await msg.delete()
+                 await msg.reply("Successfully 𝗚𝗕𝗔𝗡𝗡𝗘𝗗!")
+                 await bot.send_message(config.GROUP_ID, text="`the Dev user gbanned {}`".format(reply.from_user.mention))
               except Exception as e:
                   await msg.edit(str(e))
        elif not reply and len(message.command) == 2:
@@ -102,16 +107,7 @@ async def gbans(_, message):
                   except Exception as e:
                       await msg.edit(str(e))
 
-@bot.on_message(filters.group):
-async def gbanning(_, message):
-    user_id = message.from_user.id
-    chat_id = message.chat.id
-    bot_id = (await bot.get_me()).id
-    if user_id in get_gbanned_users():
-       check = await message.chat.get_member(bot_id)
-       if check.privileges:
-             await bot.ban_chat_member(chat_id, user_id)
-             await message.reply_text("Done!")
+
 
 
 
