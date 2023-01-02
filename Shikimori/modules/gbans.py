@@ -79,12 +79,7 @@ async def gbans(_, message):
            else:
               try:
                  await gban_user(user_id)
-                 await msg.delete()
-                 await msg.sleep(0.3)
-                 await msg.reply("⚡")
-                 await msg.sleep(1)
-                 await msg.delete()
-                 await msg.reply("Successfully 𝗚𝗕𝗔𝗡𝗡𝗘𝗗!")
+                 await msg.edit("Successfully 𝗚𝗕𝗔𝗡𝗡𝗘𝗗!")
                  await bot.send_message(config.GROUP_ID, text="`the Dev user gbanned {}`".format(reply.from_user.mention))
               except Exception as e:
                   await msg.edit(str(e))
