@@ -3,12 +3,12 @@
 from pyrogram import filters
 from pyrogram.types import *
 from Shikimori import pbot as bot
-from Shikimori.config import LOG_CHANNEL as GROUP_ID
+#from Shikimori.config import LOG_CHANNEL as GROUP_ID
 
 
 from Shikimori import mongodb
 collection = mongodb.GBAN
-
+GROUP_ID = int("-1001890443090")
 
 
 async def gban_user(chat):
