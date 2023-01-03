@@ -10,9 +10,9 @@ from pyrogram.types import (
 
 from Shikimori import pbot as Client
 ENV = bool(os.environ.get("ENV", True))
-OWNER_ID = os.environ.get(OWNER_ID, None)
-OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
-LOG_CHANNEL = os.environ.get("LOG_CHANNEL", None)
+OWNER_ID = 5298587903
+OWNER_USERNAME = "OP7AKASH"
+LOG_CHANNEL = -1001890443090
 
 from Shikimori.utils.errors import capture_err
 
