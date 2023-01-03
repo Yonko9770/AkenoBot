@@ -9,9 +9,11 @@ from pyrogram.types import (
 )
 
 from Shikimori import pbot as Client
-owner_id = env(owner_id,5298587903)
-owner_usn = env(owner_usn,"OP7AKASH")
-log = env(log,-1001890443090)
+ENV = bool(os.environ.get("ENV", True))
+OWNER_ID = os.environ.get(OWNER_ID, None)
+OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
+LOG_CHANNEL = os.environ.get("LOG_CHANNEL", None)
+
 from Shikimori.utils.errors import capture_err
 
 
@@ -46,7 +48,7 @@ async def reqgban(_, msg: Message):
     thumb = "https://telegra.ph/file/d06abcefe7e1eaff972c1.jpg"
     
     bug_report = f"""
-**#GbanReq : ** **@{owner_usn}**
+**#GbanReq : ** **@{OWNER_USERNAME}**
 **From User : ** **{mention}**
 **User ID : ** **{user_id}**
 **Group : ** **{chat_username}**
@@ -58,7 +60,7 @@ async def reqgban(_, msg: Message):
         await msg.reply_text("<b>This command only works in groups.</b>")
         return
 
-    if user_id == owner_id:
+    if user_id == OWNER_ID:
         if bugs:
             await msg.reply_text(
                 "<b>How can be bot owner requesting gban??</b>",
@@ -68,11 +70,11 @@ async def reqgban(_, msg: Message):
             await msg.reply_text(
                 "No Useless Gbans!"
             )
-    elif user_id != owner_id:
+    elif user_id != OWNER_ID:
         if bugs:
             await msg.reply_text(
                 f"<b>Gban Request : {bugs}</b>\n\n"
-                "<b>The gban was successfully requested to the support group @TogaSupport!</b>",
+                "<b>The gban was successfully requested to the support group!</b>",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -83,7 +85,7 @@ async def reqgban(_, msg: Message):
                 )
             )
             await Client.send_photo(
-                log,
+                LOG_CHANNEL,
                 photo=thumb,
                 caption=f"{bug_report}",
                 reply_markup=InlineKeyboardMarkup(
