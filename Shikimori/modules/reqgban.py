@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import os
 from pyrogram import filters
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -9,11 +9,9 @@ from pyrogram.types import (
 )
 
 from Shikimori import pbot as Client
-from Shikimori import (
-    OWNER_ID as owner_id,
-    OWNER_USERNAME as owner_usn,
-    SUPPORT_CHAT as log,
-)
+owner_id = env(owner_id,5298587903)
+owner_usn = env(owner_usn,"OP7AKASH")
+log = env(log,-1001890443090)
 from Shikimori.utils.errors import capture_err
 
 
