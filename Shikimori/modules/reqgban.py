@@ -8,13 +8,13 @@ from pyrogram.types import (
     Message,
 )
 
-from TOGA import pbot as Client
-from TOGA import (
+from Shikimori import pbot as Client
+from Shikimori import (
     OWNER_ID as owner_id,
     OWNER_USERNAME as owner_usn,
     SUPPORT_CHAT as log,
 )
-from TOGA.utils.errors import capture_err
+from Shikimori.utils.errors import capture_err
 
 
 def content(msg: Message) -> [None, str]:
@@ -45,7 +45,7 @@ async def reqgban(_, msg: Message):
     datetimes_fmt = "%d-%m-%Y"
     datetimes = datetime.utcnow().strftime(datetimes_fmt)
 
-    thumb = "https://telegra.ph/file/4be629d34f0c2496a2ec2.png"
+    thumb = "https://telegra.ph/file/d06abcefe7e1eaff972c1.jpg"
     
     bug_report = f"""
 **#GbanReq : ** **@{owner_usn}**
