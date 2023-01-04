@@ -67,7 +67,7 @@ Click on the button bellow to get description about specifics command."""
 buttons = [
     [
         InlineKeyboardButton(
-            text=f" Add {bot_name} to your Group", url=f"t.me/{BOT_USERNAME}?startgroup=true"),
+            text=f" Add {bot_name} to your Group", url=f"t.me/@Chikaxprobot?startgroup=true"),
     ],
     [
         InlineKeyboardButton(text="❓About", callback_data="Shikimori_"),
