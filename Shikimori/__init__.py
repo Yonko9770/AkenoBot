@@ -168,6 +168,7 @@ if ENV:
     MEDIA_BYE = os.environ.get("MEDIA_BYE", None)
     INLINE_IMG = os.environ.get("INLINE_IMG", None)
     OWNER_WELCOME_MEDIA = os.environ.get("OWNER_WELCOME_MEDIA", None)
+    EVENT_LOGS = os.environ.get("EVENT_LOGS", None) 
 
     try:
         WHITELIST_CHATS = {int(x) for x in os.environ.get('WHITELIST_CHATS', "").split()}
