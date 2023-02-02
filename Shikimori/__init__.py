@@ -49,6 +49,7 @@ from Python_ARQ import ARQ
 from telethon.sessions import MemorySession
 import Keep_alive
 from Shikimori.services.quoteapi import Quotly
+import spamwatch
 
 Keep_alive.keep_alive()
 
@@ -121,7 +122,7 @@ if ENV:
         TIGERS = set(int(x) for x in os.environ.get("TIGERS", "").split())
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
-
+    SPAMWATCH_API = ""
     LOG_CHANNEL = os.environ.get("LOG_CHANNEL", None)
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     URL = os.environ.get("URL", "")  # Does not contain token
@@ -191,7 +192,8 @@ else:
         OWNER_ID = int(Config.OWNER_ID)
     except ValueError:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
-
+        
+    SPAMWATCH_API = ""
     JOIN_LOGGER = Config.JOIN_LOGGER
     ERROR_LOG_CHANNEL = Config.ERROR_LOG_CHANNEL
     OWNER_USERNAME = Config.OWNER_USERNAME
@@ -314,6 +316,12 @@ DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
+
+if not SPAMWATCH_API:
+    sw = None
+    LOGGER.warning("SpamWatch API key missing! recheck your config.")
+else:
+    sw = spamwatch.Client(SPAMWATCH_API)
 
 
 # Load at end to ensure all prev variables have been set
