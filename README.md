@@ -1,7 +1,22 @@
-![Shikimori](https://telegra.ph/file/d0c1cd93423c66c099b48.jpg)
+<img src="https://telegra.ph/file/53f5a098367ad6d607a3f.jpg" align="right" width="200" height="200"/>
 
-<h2 align="center">
-    ──「 SHIKIMORI IS A MODULAR BOT WITH ANIME THEME 」──
+# Chika Fujiwara <img src="https://img.shields.io/github/v/release/TeamYukki/YukkiMusicBot?color=black&logo=github&logoColor=black&style=social" alt="RELEASE">
+
+[Chika Fujiwara](https://github.com/DEMONSLEADER/Demonrobo) is a Powerful Telegram Bot written in Python using Pyrogram and Py-Tgcalls by which you can manage your groups.
+
+# 🏷 Support / Assistance
+
+Reach out to the maintainer at one of the following places:
+
+- [kayden𝐗yonko](https://https://t.me/OP7AKASH) Owner of the bot.
+
+- Sasta devloper of this bot [Kakashi](https://t.me/YeahKakashi)
+
+- Contact options listed on [this GitHub profile](https://github.com/DEMONSLEADER)
+
+- [Telegram Support](https://t.me/YukkiSupport)
+
+If you want to say **thank you** or/and support active development of YukkiMusicBot:
 </h2>
 
 <p align="center">
