@@ -40,7 +40,7 @@ If you want to say **thank you** or/and support active development of Chika Fuji
 </h2>
 
 <p align="center">
-<a href= "https://t.me/micchon_shikimori_bot"> <img src="https://img.shields.io/badge/Shikimori-Bot-green?style=for-the-badge&logo=telegram" alt=Yor_Forger on Telegram" /> </a>
+<a href= "https://t.me/Chikaxprobot"> <img src="https://img.shields.io/badge/Chika Fujiwara-Bot-green?style=for-the-badge&logo=telegram" alt=Yor_Forger on Telegram" /> </a>
 <a href= "https://t.me/tyranteyeeee"> <img src="https://img.shields.io/badge/Support-Chat-green?style=for-the-badge&logo=telegram" alt="Support Chat" /> </a>
 <a href="https://t.me/SOME1_HING"> <img src="https://img.shields.io/badge/SOME1HING-Channel-green?style=for-the-badge&logo=telegram" alt="Update Channel" /> </a>
 </p>
