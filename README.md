@@ -10,7 +10,7 @@ Reach out to the maintainer at one of the following places:
 
 - [kayden𝐗yonko](https://https://t.me/OP7AKASH) Owner of the bot.
 
-- Sasta devloper of this bot [Kakashi](https://t.me/YeahKakashi)
+- Sasta devloper/editor of this bot [Kakashi](https://t.me/YeahKakashi)
 
 - Contact options listed on [this GitHub profile](https://github.com/DEMONSLEADER)
 
