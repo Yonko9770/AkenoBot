@@ -34,59 +34,82 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-import os
-
-from gtts import gTTS
-from gtts import gTTSError
-from telethon import *
-from telethon.tl.types import *
-
-from Shikimori import *
-
-from Shikimori import telethn as tbot
-from Shikimori.events import register
-
-
-@register(pattern="^/tts (.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = event.message.id
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        text = previous_message.message
-        lan = input_str
-    elif "|" in input_str:
-        lan, text = input_str.split("|")
-    else:
-        await event.reply(
-            "Invalid Syntax\nFormat `/tts lang | text`\nFor eg: `/tts en | hello`"
-        )
-        return
-    text = text.strip()
-    lan = lan.strip()
-    try:
-        tts = gTTS(text, tld="com", lang=lan)
-        tts.save("k.mp3")
-    except AssertionError:
-        await event.reply(
-            "The text is empty.\n"
-            "Nothing left to speak after pre-precessing, "
-            "tokenizing and cleaning."
-        )
-        return
-    except ValueError:
-        await event.reply("Language is not supported.")
-        return
-    except RuntimeError:
-        await event.reply("Error loading the languages dictionary.")
-        return
-    except gTTSError:
-        await event.reply("Error in Google Text-to-Speech API request!")
-        return
-    with open("k.mp3", "r"):
-        await tbot.send_file(
-            event.chat_id, "k.mp3", voice_note=True, reply_to=reply_to_id
-        )
-        os.remove("k.mp3")
+from typing import Optional, List 
+ from gtts import gTTS 
+ import os 
+ import requests 
+ import json 
+  
+ from telegram import ChatAction 
+ from telegram.ext import run_async 
+  
+ from AsukaRobot import dispatcher 
+ from AsukaRobot.modules.disable import DisableAbleCommandHandler 
+ from AsukaRobot.modules.helper_funcs.alternate import typing_action, send_action 
+  
+ @send_action(ChatAction.RECORD_AUDIO) 
+ def gtts(update, context): 
+     msg = update.effective_message 
+     reply = " ".join(context.args) 
+     if not reply: 
+         if msg.reply_to_message: 
+             reply = msg.reply_to_message.text 
+         else: 
+             return msg.reply_text( 
+                 "Reply to some message or enter some text to convert it into audio format!" 
+             ) 
+         for x in "\n": 
+             reply = reply.replace(x, "") 
+     try: 
+         tts = gTTS(reply, lang='en', tld='co.in') 
+         tts.save("k.mp3") 
+         with open("k.mp3", "rb") as speech: 
+             msg.reply_audio(speech) 
+     finally: 
+         if os.path.isfile("k.mp3"): 
+             os.remove("k.mp3") 
+  
+  
+ # Open API key 
+ API_KEY = "6ae0c3a0-afdc-4532-a810-82ded0054236" 
+ URL = "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText" 
+  
+  
+ @typing_action 
+ def spellcheck(update, context): 
+     if update.effective_message.reply_to_message: 
+         msg = update.effective_message.reply_to_message 
+  
+         params = dict(lang="US", clientVersion="2.0", apiKey=API_KEY, text=msg.text) 
+  
+         res = requests.get(URL, params=params) 
+         changes = json.loads(res.text).get("LightGingerTheTextResult") 
+         curr_string = "" 
+         prev_end = 0 
+  
+         for change in changes: 
+             start = change.get("From") 
+             end = change.get("To") + 1 
+             suggestions = change.get("Suggestions") 
+             if suggestions: 
+                 sugg_str = suggestions[0].get("Text")  # should look at this list more 
+                 curr_string += msg.text[prev_end:start] + sugg_str 
+                 prev_end = end 
+  
+         curr_string += msg.text[prev_end:] 
+         update.effective_message.reply_text(curr_string) 
+     else: 
+         update.effective_message.reply_text( 
+             "Reply to some message to get grammar corrected text!" 
+         ) 
+  
+ dispatcher.add_handler(DisableAbleCommandHandler("tts", gtts, pass_args=True, run_async=True)) 
+ dispatcher.add_handler(DisableAbleCommandHandler("splcheck", spellcheck, run_async=True)) 
+  
+ __help__ = """ 
+  ‣ `/tts`: Convert Text in Bot Audio  
+  *Usage*: reply to text or write message with command. Example `/tts hello` 
+  ‣ `/slpcheck`: Check the right spelling of text 
+ """ 
+ __mod_name__ = "Text To Speech" 
+ __command_list__ = ["tts"]
