@@ -134,19 +134,20 @@ def chatbot(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
     bot = context.bot
     is_kuki = sql.is_kuki(chat_id)
-    if not is_kuki:
+    if is_kuki:
         return
-	
+
     if message.text and not message.document:
         if not kuki_message(context, message):
             return
-        Message = message.text
+        Exon = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://itsprodev.cf/chatbot/SOME1HING.php?api=' + api + '&message=' + Message)
-        Kuki = json.loads(kukiurl.text)
-        kuki = Kuki['reply']
-        sleep(0.3)
-        message.reply_text(kuki, timeout=60)
+        url = f"http://api.roseloverx.com/api/chatbot?message={Exon}"
+        request = requests.get(url)
+        results = json.loads(request.text)
+        result = results["responses"]
+        sleep(0.5)
+        message.reply_text(result[0])
 
 def list_all_chats(update: Update, context: CallbackContext):
     chats = sql.get_all_kuki_chats()
