@@ -67,7 +67,7 @@ def afk(update, context):
     fname = update.effective_user.first_name
     try:
         Shikimori = update.effective_message.reply_text(
-            "*{}* is now AFK! GoodBye!".format(fname), parse_mode=ParseMode.MARKDOWN)
+            "*{}* Yaaaaaaaaar! AFK chla gya! Chalo koi baat nahi. GoodBye!".format(fname), parse_mode=ParseMode.MARKDOWN)
         time.sleep(5)
         try:
             Shikimori.delete()
@@ -93,7 +93,7 @@ def no_longer_afk(update, context):
         firstname = update.effective_user.first_name
         try:
              Shikimori = message.reply_text(
-                "*{}* is back in the chat!\nCame back after: `{}`".format(firstname, end_afk_time), parse_mode=ParseMode.MARKDOWN)
+                "*{}* Chat me aate hue!\nTum offline the: `{}`".format(firstname, end_afk_time), parse_mode=ParseMode.MARKDOWN)
              time.sleep(5)
              try:
                  Shikimori.delete()
@@ -159,12 +159,12 @@ def check_afk(update, context, user_id, fst_name, userc_id):
         if reason == "none":
             if int(userc_id) == int(user_id):
                 return
-            res = "*{}* is busy right now!\nSince: `{}`".format(fst_name, since_afk)
+            res = "*{}* Busy hai wo!\nSince: `{}`".format(fst_name, since_afk)
             update.effective_message.reply_text(res, parse_mode=ParseMode.MARKDOWN)
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = "*{}* is busy right now!\n*Reason*: `{}`\n*Away Time*: `{}`".format(fst_name, reason, since_afk)
+            res = "*{}* Ye bolke busy ho gya ki!\n*Reason*: `{}`\n*Away Time*: `{}`".format(fst_name, reason, since_afk)
             Shikimori = update.effective_message.reply_text(res, parse_mode=ParseMode.MARKDOWN)
             time.sleep(5)
             try:
