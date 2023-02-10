@@ -58,16 +58,16 @@ def awake(update: Update, context: CallbackContext):
     user = message.from_user
 
     TEXT = f"""
-    <b>Hey Bit*h <a href="tg://user?id={user.id}">{first_name}</a>, I'm {bot_name} Robot.
+    <b>Hey Bit*h <a href="tg://user?id={user.id}">{first_name}</a> ❤️, I'm {bot_name} Robot. I'm alive and working fine!!! 
 
-⚪ I'm alive & Working Fine. Any doubt
+ 💠 My Owner : <a href="https://t.me/{OWNER_USERNAME}">{OWNER_USERNAME}</a>
+ 💠 Telethon Version: 1.26.0
+ 💠 Pyrogram Version: 2.0.70
+ 💠 Python Version: 3.10 </b>
 
-⚪ My Owner : <a href="https://t.me/{OWNER_USERNAME}">{OWNER_USERNAME}</a></b>
-
-⚪ My One and Only devloper YeahKakashi
     """
     if NETWORK:
-        TEXT = TEXT + f'\n⚪ <b>I am Powered by : <a href="https://t.me/{NETWORK_USERNAME}">{NETWORK}</a>\n\n' + 'Thanks For Adding Me Here ❤️</b>'
+        TEXT = TEXT + f'\n⚪ <b>Join my support group : <a href="https://t.me/{NETWORK_USERNAME}">{NETWORK}</a>\n\n' + 'Thanks For Adding Me Here ❤️</b>'
     
     else:
         TEXT = TEXT + "\n<b>Thanks For Adding Me Here ❤️</b>"
