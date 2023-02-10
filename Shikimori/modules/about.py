@@ -41,7 +41,7 @@ from Shikimori import ANIME_NAME, BOT_USERNAME, NETWORK, NETWORK_USERNAME, START
 bot_name = f"{dispatcher.bot.first_name}"
 
 PM_START_TEXT = f"""
-\nI am *{bot_name}* , a group management bot based on the anime *{ANIME_NAME}*![ ]({START_MEDIA})
+\nI am *{bot_name}* , a group management bot based on the anime High School DxD![ ]({START_MEDIA})
 
 *Click on the Commands Button below to go through my commands.*
 """
