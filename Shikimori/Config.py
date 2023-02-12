@@ -69,18 +69,18 @@ class Config(object):
     ARQ_API = "awoo"
     APOD_API_KEY = "awoo"
     REDIS_URL = "awoo"
-    ANIME_NAME = "Shikimori's Not Just a Cutie"
+    ANIME_NAME = "High School DxD"
     START_MEDIA = "https://telegra.ph/file/9235d57807362b4e227a3.mp4"
-    BOT_USERNAME = "micchon_shikimori_bot"
-    UPDATE_CHANNEL = "Shikimori_bot_Updates"
+    BOT_USERNAME = "YeahAkenobot"
+    UPDATE_CHANNEL = "YeahAkeno_logs"
     ALIVE_MEDIA = "https://telegra.ph/file/2b04f7812f22b983f8a10.mp4"
     BOT_ID = 5169508699
     STATS_IMG = "awoo"
-    NETWORK_USERNAME = "VoidxNetwork"
+    NETWORK_USERNAME = "devs_discussion"
     NETWORK = "【V๏ɪ፝֟𝔡】»Network«"
     INLINE_IMG = "https://telegra.ph/file/8cec66d01df8c0071ebaa.jpg"
     API_WEATHER = "awoo"
-    OWNER_WELCOME_MEDIA = ""
+    OWNER_WELCOME_MEDIA = "https://telegra.ph/file/73267a4c4a2a88e6b4b8e.jpg"
 
 class Production(Config):
     LOGGER = True
