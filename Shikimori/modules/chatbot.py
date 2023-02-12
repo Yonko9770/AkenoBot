@@ -142,10 +142,10 @@ def chatbot(update: Update, context: CallbackContext):
             return
         Exon = message.text
         bot.send_chat_action(chat_id, action="typing")
-        url = f"http://api.roseloverx.com/api/chatbot?message={Exon}"
+        url = f"https://merissachatbot.tk/api/apikey=5700727404-MERISSAul3rht5mU1/Akeno/Kakashi/message={Exon}"
         request = requests.get(url)
         results = json.loads(request.text)
-        result = results["responses"]
+        result = results["reply"]
         sleep(0.5)
         message.reply_text(result[0])
 
