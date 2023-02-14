@@ -67,10 +67,7 @@ def afk(update, context):
     fname = update.effective_user.first_name
     try:
         Shikimori = update.effective_message.reply_text(
-            "*{}* Yaaaaaaaaar! AFK chla gya! Chalo koi baat nahi. GoodBye!".format(fname), parse_mode=ParseMode.MARKDOWN)
-        time.sleep(5)
-        try:
-            Shikimori.delete()
+            "*{}* Yaaaaaaaaar! AFK chle gye! Chalo koi baat nahi. GoodBye!".format(fname), parse_mode=ParseMode.MARKDOWN)
         except BadRequest:
             pass
     except BadRequest:
@@ -94,9 +91,7 @@ def no_longer_afk(update, context):
         try:
              Shikimori = message.reply_text(
                 "*{}* Chat me aate hue!\nTum offline the: `{}`".format(firstname, end_afk_time), parse_mode=ParseMode.MARKDOWN)
-             time.sleep(5)
-             try:
-                 Shikimori.delete()
+            
              except BadRequest:
                  pass
         except Exception:
@@ -164,11 +159,8 @@ def check_afk(update, context, user_id, fst_name, userc_id):
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = "*{}* Ye bolke busy ho gya ki!\n*Reason*: `{}`\n*Away Time*: `{}`".format(fst_name, reason, since_afk)
+            res = "*{}* Dikh nahi raha busy hai wo abhi!\n*Reason*: `{}`\n*Away Time*: `{}`".format(fst_name, reason, since_afk)
             Shikimori = update.effective_message.reply_text(res, parse_mode=ParseMode.MARKDOWN)
-            time.sleep(5)
-            try:
-                Shikimori.delete()
             except BadRequest:
                 pass
 
