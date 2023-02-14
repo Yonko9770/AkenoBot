@@ -68,8 +68,7 @@ def afk(update, context):
     try:
         Shikimori = update.effective_message.reply_text(
             "*{}* Yaaaaaaaaar! AFK chle gye! Chalo koi baat nahi. GoodBye!".format(fname), parse_mode=ParseMode.MARKDOWN)
-        except BadRequest:
-            pass
+        
     except BadRequest:
          pass
 
@@ -92,8 +91,6 @@ def no_longer_afk(update, context):
              Shikimori = message.reply_text(
                 "*{}* Chat me aate hue!\nTum offline the: `{}`".format(firstname, end_afk_time), parse_mode=ParseMode.MARKDOWN)
             
-             except BadRequest:
-                 pass
         except Exception:
             return
 
