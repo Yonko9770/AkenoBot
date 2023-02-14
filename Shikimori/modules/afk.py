@@ -158,9 +158,9 @@ def check_afk(update, context, user_id, fst_name, userc_id):
                 return
             res = "*{}* Dikh nahi raha busy hai wo abhi!\n*Reason*: `{}`\n*Away Time*: `{}`".format(fst_name, reason, since_afk)
             Shikimori = update.effective_message.reply_text(res, parse_mode=ParseMode.MARKDOWN)
-            try:
-            except BadRequest:
-                pass
+            
+            update.effective_message.reply_text(res)
+        
 
 def __user_info__(user_id):
     is_afk = is_user_afk(user_id)
