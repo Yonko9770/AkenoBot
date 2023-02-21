@@ -34,255 +34,27 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-from Shikimori.events import register
-from Shikimori import OWNER_ID, BOT_USERNAME, SUPPORT_CHAT, dispatcher
-from Shikimori import telethn as tbot
-import os 
-from PIL import Image, ImageDraw, ImageFont
-import random
-import requests
+
+
+import os
 import io
+import requests
+import shutil 
+import random
+import re
 import glob
+import time
 
-bot_name = f"{dispatcher.bot.first_name}"
+from io import BytesIO
+from requests import get
+from telethon.tl.types import InputMessagesFilterPhotos
+from Shikimori import telethn as tbot
 
-FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+from Shikimori import OWNER_ID, BOT_USERNAME, SUPPORT_CHAT
+from Shikimori.events import register
+from Shikimori import telethn
+from PIL import Image, ImageDraw, ImageFont
 
-@register(pattern="^/ylogo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
-
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo..')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "gold"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Streamster.ttf", 330)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="black", stroke_width=25, stroke_fill="yellow")
-    fname2 = "MizuharaLogo.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Thanks for using it.!!")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT}, {e}')
-
-
-
-@register(pattern="^/rlogo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo..')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "red"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Streamster.ttf", 330)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="black", stroke_width=25, stroke_fill="red")
-    fname2 = "MizuharaLogo.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Thanks for using it.!!")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT}, {e}')
-
-
-
-@register(pattern="^/wwlogo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo..')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "white"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Streetwear.ttf", 330)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="black", stroke_width=25, stroke_fill="white")
-    fname2 = "MizuharaLogo.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Thanks for using it.!!")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT}, {e}')
-
-
-@register(pattern="^/logo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo..')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "gold"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Bombing.ttf", 330)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="black", stroke_width=25, stroke_fill="yellow")
-    fname2 = "MizuharaLogo.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Heres your logo")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT} , {e}')
-
-@register(pattern="^/biglogo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo...wait!')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "gold"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Chopsic.otf", 950)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="black", stroke_width=25, stroke_fill="yellow")
-    fname2 = "Mizuhara.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Heres ur logo")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT}, {e}')
-
-   
-@register(pattern="^/wlogo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-     
-    if not quew:
-       await event.reply('Provide Some Text To Draw!')
-       return
-    else:
-       pass
- await event.reply('Creating your logo...wait!')
- try:
-    text = event.pattern_match.group(1)
-    img = Image.open('./Shikimori/resources/blackbg.jpg')
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "white"
-    shadowcolor = "blue"
-    font = ImageFont.truetype("./Shikimori/resources/Maghrib.ttf", 1000)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y= ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="white", stroke_width=0, stroke_fill="white")
-    fname2 = "Mizuhara.png"
-    img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Heres your logo ")
-    if os.path.exists(fname2):
-            os.remove(fname2)
- except Exception as e:
-   await event.reply(f'Error Go to Help From  @{SUPPORT_CHAT}, {e}')
-
-
-
-
-file_help = os.path.basename(__file__)
-file_help = file_help.replace(".py", "")
-file_helpo = file_help.replace("_", " ")
 
 LOGO_LINKS            = ["https://telegra.ph/file/d1838efdafce9fe611d0c.jpg",
                          "https://telegra.ph/file/c1ff2d5ec5e1b5bd1b200.jpg",
@@ -511,22 +283,66 @@ LOGO_LINKS            = ["https://telegra.ph/file/d1838efdafce9fe611d0c.jpg",
                          "https://telegra.ph/file/b958155e1e8e9ab9a0416.jpg",
                          "https://telegra.ph/file/24fff051c39b815e5078a.jpg",
                          "https://telegra.ph/file/258c02c002e89287d5d9b.jpg",
-                         "https://telegra.ph/file/d2abc99773a9d4954c2ba.jpg",                       
-                         "https://telegra.ph/file/9849b3940f063b065f4e3.jpg",
-                         "https://telegra.ph/file/39fcde1faab142883b8c0.jpg",
-                         "https://telegra.ph/file/cb53f649c7a2f8606aa55.jpg",
-                         "https://telegra.ph/file/22f94ab32ef8b7a49c11d.jpg",
-                         "https://telegra.ph/file/86af1c2c1f81aef4a2876.jpg",
-                         "https://telegra.ph/file/e754cbd01c5c60937c04c.jpg",
+                         "https://telegra.ph/file/d2abc99773a9d4954c2ba.jpg",
+                         "https://telegra.ph/file/0b5e88c90238c357641a7.jpg",
+                         "https://telegra.ph/file/4e964395ea9138c943dce.jpg",
+                         "https://telegra.ph/file/3b4eed00be4dfaa189fff.jpg",
+                         "https://telegra.ph/file/6cbc8452a2796ad58c2f9.jpg",
+                         "https://telegra.ph/file/ace91d9ae6af3881d3940.jpg",
+                         "https://telegra.ph/file/645e0b5ca6382d6d73ab5.jpg",
+                         "https://telegra.ph/file/4e964395ea9138c943dce.jpg",
+                         "https://telegra.ph/file/3c6cb9b50381170c95278.jpg",
+                         "https://telegra.ph/file/ace91d9ae6af3881d3940.jpg",
+                         "https://telegra.ph/file/9849b3940f063b065f4e3.jpg"
                          ]
 
-@register(pattern="^/alogo ?(.*)")
+
+def mediainfo(media):
+    xx = str((str(media)).split("(", maxsplit=1)[0])
+    m = ""
+    if xx == "MessageMediaDocument":
+        mim = media.document.mime_type
+        if mim == "application/x-tgsticker":
+            m = "sticker animated"
+        elif "image" in mim:
+            if mim == "image/webp":
+                m = "sticker"
+            elif mim == "image/gif":
+                m = "gif as doc"
+            else:
+                m = "pic as doc"
+        elif "video" in mim:
+            if "DocumentAttributeAnimated" in str(media):
+                m = "gif"
+            elif "DocumentAttributeVideo" in str(media):
+                i = str(media.document.attributes[0])
+                if "supports_streaming=True" in i:
+                    m = "video"
+                m = "video as doc"
+            else:
+                m = "video"
+        elif "audio" in mim:
+            m = "audio"
+        else:
+            m = "document"
+    elif xx == "MessageMediaPhoto":
+        m = "pic"
+    elif xx == "MessageMediaWebPage":
+        m = "web"
+    return m
+
+
+@register(pattern="^/logo ?(.*)")
 async def lego(event):
  quew = event.pattern_match.group(1)
- if event.sender_id != OWNER_ID and not quew:
-  await event.reply('`Please give me the text for the logo!`\n`Example /alogo <text>`')
-  return
- pesan = await event.reply('`Creating your logo with love ❤️ `')
+ if event.sender_id == OWNER_ID:
+     pass
+ else:
+
+  if not quew:
+     await event.reply('Please Gimmie A Text For The Logo.')
+     return
+ pesan = await event.reply('Logo In A Process. Please Wait.')
  try:
     text = event.pattern_match.group(1)
     randc = random.choice(LOGO_LINKS)
@@ -536,7 +352,7 @@ async def lego(event):
     pointsize = 500
     fillcolor = "black"
     shadowcolor = "blue"
-    fnt = glob.glob("./Shikimori/logopom/*")
+    fnt = glob.glob("./Shikimori/resources/Vampire Wars.otf")
     randf = random.choice(fnt)
     font = ImageFont.truetype(randf, 120)
     w, h = draw.textsize(text, font=font)
@@ -546,30 +362,11 @@ async def lego(event):
     x = (image_widthz-w)/2
     y = ((image_heightz-h)/2+6)
     draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
-    fname = "rikka.png"
+    fname = "Asuka.png"
     img.save(fname, "png")
-    await tbot.send_file(event.chat_id, file=fname, caption = f"Made by [{bot_name} ✨](https://t.me/{BOT_USERNAME})")         
+    await telethn.send_file(event.chat_id, file=fname, caption = f"Made by @{BOT_USERNAME}")         
     await pesan.delete()
     if os.path.exists(fname):
             os.remove(fname)
  except Exception as e:
-    await event.reply(f'Error, Report @{SUPPORT_CHAT}')
-
-
-file_help = os.path.basename(__file__)
-file_help = file_help.replace(".py", "")
-file_helpo = file_help.replace("_", "")
-
-
-
-__help__ = """
- - `/alogo`text :  Create your logo with anime background.
- - `/logo`text :  Create your logo with your name
- - `/wwlogo` text :  Create your logo with your name
- - `/rlogo` text :  Create your logo with your name
- - `/ylogo` text :  Create your logo with your name
- - `/biglogo` text :  Create your logo Bigger Than `logo`
- - `/wlogo` text :  Create your logo with your name
-
- """
-__mod_name__ = "Logo Maker"
+    await event.reply(f'Error, Report @{SUPPORT_CHAT}, {e}')
