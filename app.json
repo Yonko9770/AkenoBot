@@ -123,7 +123,7 @@
          "required": true,
          "value": "5700727404"
       },
-      "DEMONS": {
+      "LOLIS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
          "value": ""
