@@ -109,7 +109,7 @@ if ENV:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     try:
-        LOLIS = set(int(x) for x in os.environ.get("DEMONS", "").split())
+        LOLIS = set(int(x) for x in os.environ.get("LOLIS", "").split())
     except ValueError:
         raise Exception("Your support users list does not contain valid integers.")
 
@@ -314,7 +314,7 @@ pbot = Client("ShikimoriPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
-LOLIS = list(LOLIS)
+DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 
 if not SPAMWATCH_API:
