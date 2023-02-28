@@ -314,7 +314,7 @@ pbot = Client("ShikimoriPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
-DEMONS = list(DEMONS)
+LOLIS = list(LOLIS)
 TIGERS = list(TIGERS)
 
 if not SPAMWATCH_API:
