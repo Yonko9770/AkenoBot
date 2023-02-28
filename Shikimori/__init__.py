@@ -205,7 +205,7 @@ else:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     try:
-        LOLIS = set(int(x) for x in Config.DEMONS or [])
+        LOLIS = set(int(x) for x in Config.LOLIS or [])
     except ValueError:
         raise Exception("Your support users list does not contain valid integers.")
 
