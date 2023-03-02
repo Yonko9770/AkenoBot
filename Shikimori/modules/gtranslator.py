@@ -250,9 +250,9 @@ LANG_CODES = [
 
     "zh",
 
-    "zh_CN",
+    "zh_cn",
 
-    "zh_TW",
+    "zh_tw",
 
     "zu",
 
@@ -294,41 +294,41 @@ async def translate(_, message: Message):
 
             dest = args
 
+        if dest.lower() not in LANG_CODES:
+
+            return await message.reply_text(
+
+                "Click on the button below to see the list of supported language codes.",
+
+                reply_markup=InlineKeyboardMarkup(
+
+                    [
+
+                        [
+
+                            InlineKeyboardButton(
+
+                                text="Language codes",
+
+                                url="https://telegra.ph/Lang-Codes-03-19-3",
+
+                            ),
+
+                        ],
+
+                    ],
+
+                    disable_web_page_preview=True,
+
+                ),
+
+            )
+
     except IndexError:
 
         source = await trans.detect(to_translate)
 
         dest = "en"
-
-    if dest not in LANG_CODES:
-
-        return await message.reply_text(
-
-            "Click on the button below to see the list of supported language codes.",
-
-            reply_markup=InlineKeyboardMarkup(
-
-                [
-
-                    [
-
-                        InlineKeyboardButton(
-
-                            text="Language codes",
-
-                            url="https://telegra.ph/Lang-Codes-03-19-3",
-
-                        ),
-
-                    ],
-
-                ],
-
-                disable_web_page_preview=True,
-
-            ),
-
-        )
 
     translation = await trans(to_translate, sourcelang=source, targetlang=dest)
 
