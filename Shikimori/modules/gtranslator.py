@@ -36,7 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from gpytranslate import Translator
 
-from Scanner import pbot
+from Shikimori import pbot
 
 from pyrogram import filters, enums
 
